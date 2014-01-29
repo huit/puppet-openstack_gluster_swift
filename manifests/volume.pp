@@ -32,7 +32,7 @@ class openstack_gluster_swift::volume (
   filesystem { $openstack_gluster_swift::volume::gluster_device:
     ensure  => 'present',
     fs_type => $openstack_gluster_swift::volume::lvm_fstype,
-    options => "-i size=${openstack_gluster_swift::volume::lvm_pv::blocksize}",
+    options => "-i size=${openstack_gluster_swift::volume::lvm_pv_blocksize}",
   } ->
 
   # mount XFS volume

@@ -43,6 +43,8 @@ class openstack_gluster_swift (
   $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
   $mountpoint       = $openstack_gluster_swift::params::mountpoint,
   $mount_options    = $openstack_gluster_swift::params::mount_options,
+  $gluster_deps     = $openstack_gluster_swift::params::gluster_deps,
+  $gluster_ip       = $openstack_gluster_swift::params::gluster_ip,
 ) inherits openstack_gluster_swift::params {
 
   case $::osfamily {
@@ -60,11 +62,19 @@ class openstack_gluster_swift (
     lvm_fstype       => $openstack_gluster_swift::lvm_fstype,
     mountpoint       => $openstack_gluster_swift::mountpoint,
     mount_options    => $openstack_gluster_swift::mount_options,
-  }
+  } ->
 
   # configure yum repos
-  # install Gluster
-  # create and start Gluster volume
+  class { 'openstack_repos':
+    role => 'storage',
+  } ->
+
+  class { 'openstack_gluster_swift::gluster':
+    mountpoint   => $openstack_gluster_swift::mountpoint,
+    gluster_deps => $openstack_gluster_swift::gluster_deps,
+    gluster_ip   => $openstack_gluster_swift::gluster_ip,
+  }
+  # install and start memcached
   # install gluster_swift package
   # configure Swift
   # generate ring files

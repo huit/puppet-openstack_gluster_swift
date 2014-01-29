@@ -3,12 +3,18 @@ fixtures:
     stdlib:
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
       ref: "3.2.0"
+    glusterfs:
+      repo: "https://github.com/thias/puppet-glusterfs.git"
     lvm:
       repo: "https://github.com/puppetlabs/puppetlabs-lvm.git"
       ref: "0.1.2"
+    memcached:
+      repo: "https://github.com/thias/puppet-memcached.git"
     mount_providers:
       repo: "https://github.com/puppetlabs/puppetlabs-mount_providers.git"
       ref: "0.0.2"
+    openstack_repos:
+      repo: "https://github.com/huit/puppet-openstack_repos.git"
   symlinks:
     openstack_gluster_swift: "#{source_dir}"
 

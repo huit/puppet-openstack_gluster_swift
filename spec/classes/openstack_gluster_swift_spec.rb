@@ -6,9 +6,16 @@ describe 'openstack_gluster_swift', :type => :class do
 
     describe 'with default params' do
 
+      it { should compile.with_all_deps }
+
       it {
         should create_class('openstack_gluster_swift')
         should contain_class('openstack_gluster_swift::volume')
+        should contain_class('openstack_gluster_swift::gluster')
+      }
+
+      it {
+        should contain_class('openstack_repos')
       }
 
     end
