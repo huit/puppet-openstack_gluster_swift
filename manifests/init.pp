@@ -35,10 +35,26 @@
 #
 # Copyright 2014 President and Fellows of Harvard College
 #
-class openstack_gluster_swift {
+class openstack_gluster_swift (
+  $lvm_pv           = $openstack_gluster_swift::params::lvm_pv,
+  $lvm_pv_blocksize = $openstack_gluster_swift::params::lvm_pv_blocksize,
+  $lvm_vg           = $openstack_gluster_swift::params::lvm_vg,
+  $lvm_lv           = $openstack_gluster_swift::params::lvm_lv,
+  $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
+  $mountpoint       = $openstack_gluster_swift::params::mountpoint,
+  $mount_options    = $openstack_gluster_swift::params::mount_options,
+) inherits openstack_gluster_swift::params {
 
-  # create XFS filesystem
-  # mount XFS filesystem
+  class { 'openstack_gluster_swift::volume':
+    lvm_pv           => $openstack_gluster_swift::lvm_pv,
+    lvm_pv_blocksize => $openstack_gluster_swift::lvm_pv_blocksize,
+    lvm_vg           => $openstack_gluster_swift::lvm_vg,
+    lvm_lv           => $openstack_gluster_swift::lvm_lv,
+    lvm_fstype       => $openstack_gluster_swift::lvm_fstype,
+    mountpoint       => $openstack_gluster_swift::mountpoint,
+    mount_options    => $openstack_gluster_swift::mount_options,
+  }
+
   # configure yum repos
   # install Gluster
   # create and start Gluster volume
