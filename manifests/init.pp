@@ -41,6 +41,7 @@ class openstack_gluster_swift (
   $lvm_vg           = $openstack_gluster_swift::params::lvm_vg,
   $lvm_lv           = $openstack_gluster_swift::params::lvm_lv,
   $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
+  $lvm_size         = $openstack_gluster_swift::params::lvm_size,
   $mountpoint       = $openstack_gluster_swift::params::mountpoint,
   $mount_options    = $openstack_gluster_swift::params::mount_options,
   $gluster_deps     = $openstack_gluster_swift::params::gluster_deps,
@@ -60,6 +61,7 @@ class openstack_gluster_swift (
     lvm_vg           => $openstack_gluster_swift::lvm_vg,
     lvm_lv           => $openstack_gluster_swift::lvm_lv,
     lvm_fstype       => $openstack_gluster_swift::lvm_fstype,
+    lvm_size         => $openstack_gluster_swift::lvm_size,
     mountpoint       => $openstack_gluster_swift::mountpoint,
     mount_options    => $openstack_gluster_swift::mount_options,
   } ->

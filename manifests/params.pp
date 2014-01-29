@@ -9,6 +9,7 @@ class openstack_gluster_swift::params {
   $lvm_vg = 'vg_gluster'
   $lvm_lv = 'swift'
   $lvm_fstype = 'xfs'
+  $lvm_size = undef
   $mount_options = ['inode64','noatime','nodiratime']
   $mountpoint = '/mnt/swift'
 } # Class:: openstack_gluster_swift::params

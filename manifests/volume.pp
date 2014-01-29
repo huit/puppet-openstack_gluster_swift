@@ -7,6 +7,7 @@ class openstack_gluster_swift::volume (
   $lvm_vg           = $openstack_gluster_swift::params::lvm_vg,
   $lvm_lv           = $openstack_gluster_swift::params::lvm_lv,
   $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
+  $lvm_size         = $openstack_gluster_swift::params::lvm_size,
   $mountpoint       = $openstack_gluster_swift::params::mountpoint,
   $mount_options    = $openstack_gluster_swift::params::mount_options,
 ) inherits openstack_gluster_swift::params {
@@ -26,7 +27,7 @@ class openstack_gluster_swift::volume (
   logical_volume { $openstack_gluster_swift::volume::lvm_lv:
     ensure       => 'present',
     volume_group => $openstack_gluster_swift::volume::lvm_vg,
-    size         => undef,
+    size         => $openstack_gluster_swift::volume::lvm_size,
   } ->
 
   filesystem { $openstack_gluster_swift::volume::gluster_device:
@@ -46,6 +47,7 @@ class openstack_gluster_swift::volume (
   mounttab { $openstack_gluster_swift::volume::mountpoint:
     ensure  => 'present',
     device  => $openstack_gluster_swift::volume::gluster_device,
+    fstype  => $openstack_gluster_swift::volume::lvm_fstype,
     options => $openstack_gluster_swift::volume::mount_options,
     pass    => 0,
     dump    => 0,
