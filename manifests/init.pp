@@ -45,6 +45,13 @@ class openstack_gluster_swift (
   $mount_options    = $openstack_gluster_swift::params::mount_options,
 ) inherits openstack_gluster_swift::params {
 
+  case $::osfamily {
+    'RedHat': {}
+    default: {
+      fail("openstack_gluster_swift only runs on RedHat platforms, not '${::osfamily}'.")
+    }
+  }
+
   class { 'openstack_gluster_swift::volume':
     lvm_pv           => $openstack_gluster_swift::lvm_pv,
     lvm_pv_blocksize => $openstack_gluster_swift::lvm_pv_blocksize,

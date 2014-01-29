@@ -2,14 +2,14 @@
 #
 #
 class openstack_gluster_swift::volume (
-  $lvm_pv,
-  $lvm_pv_blocksize,
-  $lvm_vg,
-  $lvm_lv,
-  $lvm_fstype,
-  $mountpoint,
-  $mount_options,
-) {
+  $lvm_pv           = $openstack_gluster_swift::params::lvm_pv,
+  $lvm_pv_blocksize = $openstack_gluster_swift::params::lvm_pv_blocksize,
+  $lvm_vg           = $openstack_gluster_swift::params::lvm_vg,
+  $lvm_lv           = $openstack_gluster_swift::params::lvm_lv,
+  $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
+  $mountpoint       = $openstack_gluster_swift::params::mountpoint,
+  $mount_options    = $openstack_gluster_swift::params::mount_options,
+) inherits openstack_gluster_swift::params {
 
   $gluster_device = "/dev/${openstack_gluster_swift::volume::lvm_vg}/${openstack_gluster_swift::volume::lvm_lv}"
 
@@ -40,7 +40,7 @@ class openstack_gluster_swift::volume (
     ensure => 'directory',
     owner  => 'root',
     group  => 'root',
-    mode   => '755',
+    mode   => '0755',
   } ->
 
   mounttab { $openstack_gluster_swift::volume::mountpoint:
