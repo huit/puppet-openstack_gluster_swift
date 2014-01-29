@@ -1,6 +1,6 @@
-openstack_gluster-swift
+openstack_gluster_swift
 
-This is the openstack_gluster-swift module.
+This is the openstack_gluster_swift module.
 
 License
 -------

@@ -3,6 +3,9 @@ fixtures:
     stdlib:
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
       ref: "3.2.0"
+    stdlib:
+      repo: "https://github.com/puppetlabs/puppetlabs-lvm.git"
+      ref: "0.1.2"
   symlinks:
-    openstack_gluster-swift: "#{source_dir}"
+    openstack_gluster_swift: "#{source_dir}"
 

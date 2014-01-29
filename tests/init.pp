@@ -9,4 +9,4 @@
 # Learn more about module testing here:
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-include openstack_gluster-swift
+include openstack_gluster_swift

@@ -1,6 +1,6 @@
-# == Class: openstack_gluster-swift
+# == Class: openstack_gluster_swift
 #
-# Full description of class openstack_gluster-swift here.
+# Full description of class openstack_gluster_swift here.
 #
 # === Parameters
 #
@@ -23,19 +23,28 @@
 #
 # === Examples
 #
-#  class { openstack_gluster-swift:
+#  class { openstack_gluster_swift:
 #    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Steve Huff <steve_huff@harvard.edu>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014 President and Fellows of Harvard College
 #
-class openstack_gluster-swift {
+class openstack_gluster_swift {
 
+  # create XFS filesystem
+  # mount XFS filesystem
+  # configure yum repos
+  # install Gluster
+  # create and start Gluster volume
+  # install gluster_swift package
+  # configure Swift
+  # generate ring files
+  # start Swift components
 
 }
