@@ -1,0 +1,19 @@
+[DEFAULT]
+devices = /srv/node
+bind_ip = <%= @swift_ip %>
+bind_port = 6002
+mount_check = false
+disable_fallocate = true
+user = swift
+log_facility = LOG_LOCAL2
+workers = 1
+
+[pipeline:main]
+pipeline = account-server
+
+[app:account-server]
+use = egg:gluster_swift#account
+user = root
+log_facility = LOG_LOCAL2
+log_level = WARN
+log_requests = off

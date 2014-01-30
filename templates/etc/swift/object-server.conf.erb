@@ -1,0 +1,20 @@
+[DEFAULT]
+devices = /srv/node
+bind_ip = <%= @swift_ip %>
+bind_port = 6010
+mount_check = false
+max_clients = 1024
+disable_fallocate = true
+workers = 2
+
+[pipeline:main]
+pipeline = object-server
+
+[app:object-server]
+use = egg:gluster_swift#object
+user = root
+log_facility = LOG_LOCAL2
+log_level = WARN
+log_requests = off
+disk_chunk_size = 65536
+network_chunk_size = 65536

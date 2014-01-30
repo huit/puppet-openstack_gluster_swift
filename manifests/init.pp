@@ -36,16 +36,20 @@
 # Copyright 2014 President and Fellows of Harvard College
 #
 class openstack_gluster_swift (
-  $lvm_pv           = $openstack_gluster_swift::params::lvm_pv,
-  $lvm_pv_blocksize = $openstack_gluster_swift::params::lvm_pv_blocksize,
-  $lvm_vg           = $openstack_gluster_swift::params::lvm_vg,
-  $lvm_lv           = $openstack_gluster_swift::params::lvm_lv,
-  $lvm_fstype       = $openstack_gluster_swift::params::lvm_fstype,
-  $lvm_size         = $openstack_gluster_swift::params::lvm_size,
-  $mountpoint       = $openstack_gluster_swift::params::mountpoint,
-  $mount_options    = $openstack_gluster_swift::params::mount_options,
-  $gluster_deps     = $openstack_gluster_swift::params::gluster_deps,
-  $gluster_ip       = $openstack_gluster_swift::params::gluster_ip,
+  $lvm_pv               = $openstack_gluster_swift::params::lvm_pv,
+  $lvm_pv_blocksize     = $openstack_gluster_swift::params::lvm_pv_blocksize,
+  $lvm_vg               = $openstack_gluster_swift::params::lvm_vg,
+  $lvm_lv               = $openstack_gluster_swift::params::lvm_lv,
+  $lvm_fstype           = $openstack_gluster_swift::params::lvm_fstype,
+  $lvm_size             = $openstack_gluster_swift::params::lvm_size,
+  $mountpoint           = $openstack_gluster_swift::params::mountpoint,
+  $mount_options        = $openstack_gluster_swift::params::mount_options,
+  $gluster_deps         = $openstack_gluster_swift::params::gluster_deps,
+  $gluster_ip           = $openstack_gluster_swift::params::gluster_ip,
+  $swift_package_name   = $openstack_gluster_swift::params::swift_package_name,
+  $swift_package_source = $openstack_gluster_swift::params::swift_package_source,
+  $swift_services       = $openstack_gluster_swift::params::swift_services,
+  $swift_ip             = $openstack_gluster_swift::params::swift_ip,
 ) inherits openstack_gluster_swift::params {
 
   case $::osfamily {
@@ -75,11 +79,21 @@ class openstack_gluster_swift (
     mountpoint   => $openstack_gluster_swift::mountpoint,
     gluster_deps => $openstack_gluster_swift::gluster_deps,
     gluster_ip   => $openstack_gluster_swift::gluster_ip,
-  }
+  } ->
+
   # install and start memcached
+  class { 'memcached': } ->
+
   # install gluster_swift package
   # configure Swift
   # generate ring files
   # start Swift components
+  class { 'openstack_gluster_swift::swift':
+    swift_package_name   => $openstack_gluster_swift::swift_package_name,
+    swift_package_source => $openstack_gluster_swift::swift_package_source,
+    swift_services       => $openstack_gluster_swift::swift_services,
+    swift_ip             => $openstack_gluster_swift::swift_ip,
+    gluster_ip           => $openstack_gluster_swift::gluster_ip,
+  }
 
 }

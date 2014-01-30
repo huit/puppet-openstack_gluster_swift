@@ -12,10 +12,12 @@ describe 'openstack_gluster_swift', :type => :class do
         should create_class('openstack_gluster_swift')
         should contain_class('openstack_gluster_swift::volume')
         should contain_class('openstack_gluster_swift::gluster')
+        should contain_class('openstack_gluster_swift::swift')
       }
 
       it {
         should contain_class('openstack_repos')
+        should contain_class('memcached')
       }
 
     end
