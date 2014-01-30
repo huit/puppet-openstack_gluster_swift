@@ -1,5 +1,5 @@
 name    'huit/openstack_gluster_swift'
-version '0.0.1'
+version '0.1.0'
 source 'UNKNOWN'
 author 'huit'
 license 'Apache License, Version 2.0'
